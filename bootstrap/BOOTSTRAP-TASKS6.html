@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Validation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        #submitBtn {
+            background-color: #ff0000; 
+            color: #fff;
+        }
+
+        #submitBtn.invalid {
+            background-color: #ff0000; 
+        }
+
+        .invalid-feedback {
+            color: #ff0000; 
+        }
+
+        form {
+            background-color: #f0f0f0; 
+            padding: 40px; 
+            border-radius: 2px; 
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="myForm" novalidate>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                                <div class="invalid-feedback">Please fill this field</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Please fill this field</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="invalid-feedback">Please fill this field</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hobbies">Hobbies</label>
+                                <textarea class="form-control" id="hobbies" name="hobbies" rows="4"></textarea>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('myForm');
+            var submitBtn = document.getElementById('submitBtn');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var isValid = form.checkValidity();
+
+                if (isValid) {
+                    submitBtn.classList.remove('invalid');
+                    alert('Form submitted successfully!');
+                } else {
+                    submitBtn.classList.add('invalid');
+                    alert('Please fill in all required fields.');
+                }
+                var inputs = form.querySelectorAll('[required]');
+                inputs.forEach(function(input) {
+                    if (input.value.trim() === '') {
+                        input.classList.add('is-invalid');
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

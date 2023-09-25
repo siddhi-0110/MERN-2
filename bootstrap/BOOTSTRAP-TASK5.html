@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Form with Validation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        form {
+            background-color: #f0f0f0; 
+            padding: 40px; 
+            border-radius: 2px; 
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="myForm" novalidate>
+                            <div class="form-group">
+                            <label for="name" class="input-label">
+                                <i class="fas fa-user"></i> First Name
+                            </label>
+                            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your first name">
+                            <div class="invalid-feedback">
+                            Please enter your first name.
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label for="name" class="input-label">
+                                <i class="fas fa-user"></i> Last Name
+                            </label>
+                            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your last name">
+                            <div class="invalid-feedback">
+                            Please enter your last name.
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label for="email" class="input-label">
+                                <i class="fas fa-envelope"></i> Email
+                            </label>
+                            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                            <div class="invalid-feedback">
+                                 Please enter a valid email address.
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="input-label">
+                                    <i class="fas fa-phone"></i> Phone
+                                </label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required placeholder="Enter your phone number (845)555-1212">
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address" class="input-label">
+                                    <i class="fas fa-map-marker"></i> Address
+                                </label>
+                                <input type="text" class="form-control" id="address" name="address" required placeholder="Enter your address">
+                                <div class="invalid-feedback">
+                                    Please enter your address.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city" class="input-label">
+                                    <i class="fas fa-city"></i> City
+                                </label>
+                                <input type="text" class="form-control" id="city" name="city" required placeholder="Enter your city">
+                                <div class="invalid-feedback">
+                                    Please enter your city.
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label for="state" class="input-label">
+                                 <i class="fas fa-list"></i> State
+                            </label>
+                            <select class="form-control" id="state" name="state" required>
+                            <option value="" selected disabled>Select a state</option>
+                            <option value="Alabama">Andhra Pradesh</option>
+                            <option value="Alaska">Maharastra</option>
+                            <option value="Arizona">Delhi</option>
+                            </select>
+                            <div class="invalid-feedback">
+                               Please select a state.
+                            </div>
+                            </div>
+
+                            
+                            <div class="form-group">
+                                <label class="input-label">Do you have hosting?</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="hostingYes" name="hosting" class="custom-control-input" value="yes" required>
+                                    <label class="custom-control-label" for="hostingYes">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="hostingNo" name="hosting" class="custom-control-input" value="no" required>
+                                    <label class="custom-control-label" for="hostingNo">No</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description" class="input-label">
+                                    <i class="fas fa-comment"></i> Project Description
+                                </label>
+                                <textarea class="form-control" id="description" name="description" rows="4" required placeholder="Enter your project details.."></textarea>
+                                <div class="invalid-feedback">
+                                    Please provide a description.
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var form = document.getElementById('myForm');
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            }, false);
+        })();
+    </script>
+</body>
+</html>

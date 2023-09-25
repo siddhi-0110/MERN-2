@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String Sorting</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1, p, input, button {
+      margin: 10px;
+    }
+    .button-container {
+      display: flex;
+    }
+    .button-container button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>String Sorting</h1>
+  <p>Enter a string to sort:</p>
+  <input type="text" id="inputString">
+  <div class="button-container">
+    <button onclick="sortString()">Sort</button>
+    <button onclick="clearFields()">Clear</button>
+  </div>
+  <p id="result"></p>
+
+  <script>
+    function sortString() {
+      const inputElement = document.getElementById("inputString");
+      const inputValue = inputElement.value;
+      const sortedResult = sortStringAlphabetically(inputValue);
+      const resultElement = document.getElementById("result");
+      resultElement.textContent = `Sorted String: ${sortedResult}`;
+    }
+
+    function sortStringAlphabetically(inputString) {
+      const charArray = inputString.split('');
+      const sortedArray = charArray.sort();
+      const sortedString = sortedArray.join('');
+      return sortedString;
+    }
+
+    function clearFields() {
+      const inputElement = document.getElementById("inputString");
+      inputElement.value = "";
+      const resultElement = document.getElementById("result");
+      resultElement.textContent = "";
+    }
+  </script>
+</body>
+</html>

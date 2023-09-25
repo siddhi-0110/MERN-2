@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiplication and Division</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1, p, input, button {
+      margin: 10px;
+    }
+    .button-container {
+      display: flex;
+    }
+    .button-container button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Multiplication and Division</h1>
+  <form id="calculatorForm">
+    <p>Enter the first number:</p>
+    <input type="text" id="firstNumber" required>
+    <p>Enter the second number:</p>
+    <input type="text" id="secondNumber" required>
+    <div class="button-container">
+      <button type="button" onclick="calculateMultiplication()">Multiply</button>
+      <button type="button" onclick="calculateDivision()">Divide</button>
+      <button type="button" onclick="clearFields()">Clear</button>
+    </div>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    function calculateMultiplication() {
+      const firstNumber = parseFloat(document.getElementById("firstNumber").value);
+      const secondNumber = parseFloat(document.getElementById("secondNumber").value);
+      const result = firstNumber * secondNumber;
+      displayResult(result);
+    }
+
+    function calculateDivision() {
+      const firstNumber = parseFloat(document.getElementById("firstNumber").value);
+      const secondNumber = parseFloat(document.getElementById("secondNumber").value);
+      if (secondNumber === 0) {
+        displayResult("Division by zero is not allowed");
+      } else {
+        const result = firstNumber / secondNumber;
+        displayResult(result);
+      }
+    }
+
+    function displayResult(result) {
+      const resultElement = document.getElementById("result");
+      resultElement.textContent = `Result: ${result}`;
+    }
+
+    function clearFields() {
+      document.getElementById("firstNumber").value = "";
+      document.getElementById("secondNumber").value = "";
+      document.getElementById("result").textContent = "";
+    }
+  </script>
+</body>
+</html>

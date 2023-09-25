@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Page</title>
+    <style>
+        body {
+            background: linear-gradient(180deg, rgb(255, 255, 0) 0%, rgb(255, 192, 203) 30%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 200px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-column {
+            display: flex;
+            align-items: center;
+            width: 120%;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        label {
+            width: 40%;
+            display: inline-block;
+        }
+
+        .language-label {
+            width: 20%;
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .invalid {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body bgcolor="Lightskyblue">
+    <br>
+    <br>
+    <form id="registrationForm">
+        <div class="form-row">
+            <div class="form-column">
+                <label>First Name:</label>
+                <input type="text" name="firstname" size="15" />
+                <span class="error-message" id="firstnameError"></span>
+            </div>
+            <div class="form-column">
+                <label>Last Name:</label>
+                <input type="text" name="lastname" size="15" />
+                <span class="error-message" id="lastnameError"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <label>Email:</label>
+                <input type="email" name="email" size="30" />
+                <span class="error-message" id="emailError"></span>
+            </div>
+            <div class="form-column">
+                <label>Password:</label>
+                <input type="password" name="password" size="15" />
+                <span class="error-message" id="passwordError"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <label>Re-enter Password:</label>
+                <input type="password" name="confirm_password" size="15" />
+                <span class="error-message" id="confirmPasswordError"></span>
+            </div>
+            <div class="form-column">
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="male" /> Male 
+                <input type="radio" name="gender" value="female" /> Female 
+                <input type="radio" name="gender" value="other" /> Other
+                <span class="error-message" id="genderError"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-column">
+                <label>Age:</label>
+                <input type="number" name="age" min="1" max="120" />
+                <span class="error-message" id="ageError"></span>
+            </div>
+            <div class="form-column">
+                <label>Phone:</label>
+                <input type="text" name="phone" size="15" />
+                <span class="error-message" id="phoneError"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label>Address:</label>
+            <textarea cols="30" rows="5" name="address"></textarea>
+            <span class="error-message" id="addressError"></span>
+        </div><br>
+
+        <div class="form-row">
+            <div class="form-column">
+                <label>State:</label>
+                <input type="text" name="state" size="30" />
+                <span class="error-message" id="stateError"></span>
+            </div>
+            <div class="form-column">
+                <label>Country:</label>
+                <select name="country">
+                    <option value="">Choose your country</option>
+                    <option value="us">United States</option>
+                    <option value="ca">Canada</option>
+                </select>
+                <span class="error-message" id="countryError"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label>Languages Known:</label>
+            <div class="form-row">
+                <input type="checkbox" name="language" value="English" />
+                <label class="language-label">English</label>
+            </div>
+            <div class="form-row">
+                <input type="checkbox" name="language" value="Spanish" />
+                <label class="language-label">Kannada</label>
+            </div>
+            <div class="form-row">
+                <input type="checkbox" name="language" value="French" />
+                <label class="language-label">Hindi</label>
+            </div>
+            <div class="form-row">
+                <input type="checkbox" name="language" value="French" />
+                <label class="language-label">Telugu</label>
+            </div>
+        </div><br><br>
+
+        <div class="form-column">
+            <input type="checkbox" name="declaration" required />
+            <label>Hereby I declare that all the given details are true.</label>
+            <span class="error-message" id="declarationError"></span>
+        </div>
+
+        <div class="form-column">
+            <label style="text-align: right; width: 90%;">Login to <a href="#">Ethnus</a> website.</label>
+        </div>
+        
+
+        <div class="form-column">
+            <input type="submit" value="Register" id="registerButton" />
+        </div>
+    </form>
+
+    <script>
+        const registrationForm = document.getElementById("registrationForm");
+        const registerButton = document.getElementById("registerButton");
+
+        registrationForm.addEventListener("submit", function (event) {
+            let isValid = true;
+            clearErrors();
+
+            if (registrationForm.firstname.value === "") {
+                displayError("firstnameError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.lastname.value === "") {
+                displayError("lastnameError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.email.value === "") {
+                displayError("emailError", "POOR");
+                isValid = false;
+            } else if (!isValidEmail(registrationForm.email.value)) {
+                displayError("emailError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.password.value === "") {
+                displayError("passwordError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.confirm_password.value === "") {
+                displayError("confirmPasswordError", "POOR OR MISMATCHED");
+                isValid = false;
+            } else if (registrationForm.confirm_password.value !== registrationForm.password.value) {
+                displayError("confirmPasswordError", "POOR");
+                isValid = false;
+            }
+
+            if (!registrationForm.gender.value) {
+                displayError("genderError", "Gender is required.");
+                isValid = false;
+            }
+
+            if (!registrationForm.age.value) {
+                displayError("ageError", "POOR");
+                isValid = false;
+            } else if (isNaN(registrationForm.age.value) || parseInt(registrationForm.age.value) < 1 || parseInt(registrationForm.age.value) > 120) {
+                displayError("ageError", "Invalid age.");
+                isValid = false;
+            }
+
+            if (registrationForm.phone.value === "") {
+                displayError("phoneError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.address.value === "") {
+                displayError("addressError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.state.value === "") {
+                displayError("stateError", "POOR");
+                isValid = false;
+            }
+
+            if (registrationForm.country.value === "") {
+                displayError("countryError", "POOR");
+                isValid = false;
+            }
+
+            if (!registrationForm.language.checked) {
+                displayError("declarationError", "POOR");
+                isValid = false;
+            }
+
+            if (!registrationForm.declaration.checked) {
+                displayError("declarationError", "POOR");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); 
+                registerButton.style.backgroundColor = "red"; 
+            }
+        });
+
+        function displayError(id, errorMessage) {
+            const errorElement = document.getElementById(id);
+            errorElement.textContent = errorMessage;
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll(".error-message");
+            errorElements.forEach(function (element) {
+                element.textContent = "";
+            });
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>

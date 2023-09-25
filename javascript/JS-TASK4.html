@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show Date and Time</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1, p, button {
+      margin: 10px;
+    }
+    .button-container {
+      display: flex;
+    }
+    .button-container button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Show Date and Time</h1>
+  <div class="button-container">
+    <button onclick="showDate()">Show Date</button>
+    <button onclick="showTime()">Show Time</button>
+  </div>
+  <p id="output"></p>
+  <button onclick="clearOutput()">Clear</button>
+
+  <script>
+    function showDate() {
+      const currentDate = new Date();
+      const day = currentDate.getDate();
+      const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+      const monthIndex = currentDate.getMonth();
+      const year = currentDate.getFullYear();
+
+      const formattedDate = `${day}/${monthNames[monthIndex]}/${year}`;
+      displayOutput(formattedDate);
+    }
+
+    function showTime() {
+      const currentTime = new Date();
+      const timeString = currentTime.toString();
+      displayOutput(timeString);
+    }
+
+    function displayOutput(outputText) {
+      const outputElement = document.getElementById("output");
+      outputElement.textContent = outputText;
+    }
+
+    function clearOutput() {
+      const outputElement = document.getElementById("output");
+      outputElement.textContent = "";
+    }
+  </script>
+</body>
+</html>
